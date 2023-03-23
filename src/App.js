@@ -33,6 +33,7 @@ function App() {
   };
   return (
     <body>
+      <h2>Data Upload and Fit Model App</h2>
       <div className='container'>
         <div className="half-page">
           <form onSubmit={handleSubmit}>

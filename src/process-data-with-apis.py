@@ -45,6 +45,8 @@ def fetch_chart(df,file):
 
     img_path=Path(img_name)
     plt.savefig(img_path)
+    plt.xlabel('x')
+    plt.ylabel('y')
     img=Image.open(img_path)
     return img
 
@@ -58,8 +60,8 @@ def fit_model():
     # print(os.path.exists(file))
     df = pd.read_csv(file)   
     image,modelCoef,coefDeter=fetch_linear_reg_plot(df,file_name)
-    response_data = {'imageUrl': "data:image/jpeg;base64,"+image_to_base64(image),'modelCoef':modelCoef,'coefDeter':coefDeter}
-    return jsonify(response_data)
+    response_data1 = {'imageUrl': "data:image/jpeg;base64,"+image_to_base64(image),'modelCoef':modelCoef,'coefDeter':coefDeter}
+    return jsonify(response_data1)
 
 
 def fetch_linear_reg_plot(df,file_name):
@@ -98,9 +100,11 @@ def fetch_linear_reg_plot(df,file_name):
     plt.scatter(x_train, y_train, color="blue")
     plt.plot(x_test, y_pred, color="yellow", linewidth=3)
     plt.plot(x_train, y_pred_train, color="green", linewidth=4)
+    plt.xlabel('x')
+    plt.ylabel('y')
 
-    plt.xticks(())
-    plt.yticks(())
+    # plt.xticks(())
+    # plt.yticks(())
     fit_img_path=Path(fit_img_name)
     plt.savefig(fit_img_path)
     img=Image.open(fit_img_path)
